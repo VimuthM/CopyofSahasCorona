@@ -1,0 +1,49 @@
+import smtplib
+import time
+import requests
+from bs4 import BeautifulSoup
+
+CountryName = 'Sri Lanka'
+
+def begin_dissection(res):
+    global Tot
+    global IPM
+    global Nc 
+    Tot = res[12:15]
+    # print(Tot)
+    Nc = res[18:25]
+    IPM = res[30:39]
+    # print(IPM)
+
+def get_corona():
+    URL = 'https://www.worldometers.info/coronavirus/'
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    # soup = BeautifulSoup(URL)
+    countries = soup.find_all('tr')
+    for country in countries:
+        str = country.get_text()
+        if CountryName in str:
+            res = str
+            # print(str)
+            # print(len(str))
+            begin_dissection(res)
+    ReplyString = 'Sri Lanka\nNo. Of Covid-19 Patients: ' + Tot + '\nNew Cases:' + Nc + '\nNo. Of Patients Per Million Of Population: ' + IPM
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    msg = MIMEMultipart()
+    msg['From'] = 'vimuthmendis@gmail.com'
+    msg['To'] = 'yasinthamendis@gmail.com''pramudithamendis@gmail.com'
+    msg['Subject'] = 'Hi Ammi and Thaththi'
+    part=MIMEText(ReplyString,'Plain')
+    msg.attach(part)
+    try:
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.ehlo()
+        server.login('vimuthmendis@gmail.com','11235*Pamuka')
+        server.sendmail('vimuthmendis@gmail.com', 'yasinthamendis@gmail.com''pramudithamendis@gmail.com', msg.as_string())
+        server.close()
+        print('Damn')
+    except:
+        print ('Something went wrong...')
+get_corona()
