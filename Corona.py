@@ -36,3 +36,5 @@ def get_corona():
         server.close()
     except:
         print ('Something went wrong...')
+ get_corona()
+
