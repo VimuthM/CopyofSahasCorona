@@ -1,4 +1,4 @@
-import tweepy
+import smtplib
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -27,5 +27,12 @@ def get_corona():
             # print(len(str))
             begin_dissection(res)
     ReplyString = 'Sri Lanka\nNo. Of Covid-19 Patients: ' + Tot + '\nNo. Of Patients Per Million Of Population: ' + IPM
-    print(ReplyString)
-get_corona()
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
+        server.starttls()
+        server.login('vimuthmendis@gmail.com','dinamuni')
+        server.sendmail('yasinthamendis@gmail.com', 'vimuthmendis@gmail.com', ReplyString)
+        server.close()
+    except:
+        print ('Something went wrong...')
