@@ -31,7 +31,7 @@ def get_corona():
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
-        server.login('vimuthmendis@gmail.com','dinamuni')
+        server.login('vimuthmendis@gmail.com','')
         server.sendmail('yasinthamendis@gmail.com', 'vimuthmendis@gmail.com', ReplyString)
         server.close()
     except:
