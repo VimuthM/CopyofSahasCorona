@@ -40,7 +40,7 @@ def get_corona():
     try:
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
-        server.login('vimuthmendis@gmail.com','11235*Pamuka')
+        server.login('vimuthmendis@gmail.com','')
         server.sendmail('vimuthmendis@gmail.com', 'yasinthamendis@gmail.com''pramudithamendis@gmail.com', msg.as_string())
         server.close()
         print('Damn')
