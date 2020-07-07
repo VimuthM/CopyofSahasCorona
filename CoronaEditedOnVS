@@ -32,16 +32,16 @@ def get_corona():
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
     msg = MIMEMultipart()
-    msg['From'] = 'vimuthmendis@gmail.com'
-    msg['To'] = 'yasinthamendis@gmail.com''pramudithamendis@gmail.com'
-    msg['Subject'] = 'Hi Ammi and Thaththi'
+    msg['From'] = ''
+    msg['To'] = ''
+    msg['Subject'] = 'Hi '
     part=MIMEText(ReplyString,'Plain')
     msg.attach(part)
     try:
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
-        server.login('vimuthmendis@gmail.com','')
-        server.sendmail('vimuthmendis@gmail.com', 'yasinthamendis@gmail.com''pramudithamendis@gmail.com', msg.as_string())
+        server.login('','')
+        server.sendmail('', msg.as_string())
         server.close()
         print('Damn')
     except:
